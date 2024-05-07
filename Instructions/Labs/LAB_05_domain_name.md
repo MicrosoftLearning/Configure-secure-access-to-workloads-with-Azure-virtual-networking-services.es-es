@@ -8,16 +8,15 @@ lab:
 
 ## Escenario
 
-La organización requiere que las cargas de trabajo registren y resuelvan los nombres de dominio internamente en redes virtuales. Las máquinas virtuales de las redes virtuales pueden usar el nombre de dominio en lugar de las direcciones IP para la comunicación interna. En ese caso, los nombres de dominio se resolverán con una zona DNS privada mediante un vínculo de red virtual. 
-
-
+La organización requiere que las cargas de trabajo registren y resuelvan los nombres de dominio internamente en redes virtuales. Las máquinas virtuales de las redes virtuales pueden usar el nombre de dominio en lugar de las direcciones IP para la comunicación interna. En ese caso, los nombres de dominio se resolverán con una zona DNS privada mediante un vínculo de red virtual.
 
 ### Diagrama de la arquitectura
 
 ![Diagrama de Azure DNS vinculado a una red virtual.](../Media/task-5.png)
 
 ### Tareas de aptitudes
-- Crear y configurar una zona DNS privada. 
+
+- Crear y configurar una zona DNS privada.
 - Cree y configure registros DNS.
 - Configure DNS en una red virtual.
 
@@ -33,14 +32,14 @@ DNS privado de Azure proporciona un servicio DNS confiable y seguro para adminis
 
 1. En la pestaña **Datos básicos** de Crear zona DNS privada, escriba la información como se muestra en la tabla siguiente:
 
-    | Propiedad | Valor    |
-    |:---------|:---------|
-    |Suscripción|**Seleccione la suscripción**|
-    |Grupo de recursos|**RG1**|
-    |Nombre|**contoso.com**|
-    |Region|**Este de EE. UU.**|
+    | Propiedad       | Valor                        |
+    | :------------- | :--------------------------- |
+    | Suscripción   | **Seleccione la suscripción** |
+    | Grupo de recursos | **RG1**                      |
+    | Nombre           | **contoso.com**              |
+    | Region         | **Este de EE. UU.**                  |
 
-1. Seleccione **Revisar y crear** y, luego, **Crear**.
+1. Seleccione **Revisar y crear** y luego **Crear**.
 
 ### Cree un vínculo de red virtual para su zona de DNS privada
 
@@ -54,11 +53,11 @@ DNS privado de Azure proporciona un servicio DNS confiable y seguro para adminis
 
 1. En la pestaña **Datos básicos** de Crear red virtual, escriba la información como se muestra en la tabla siguiente:
 
-    | Propiedad | Valor    |
-    |:---------|:---------|
-    |Nombre del vínculo|**app-vnet-link**|
-    |Red virtual|**app-vnet**|
-    |Habilitación del registro automático|**Habilitado**|
+    | Propiedad                 | Valor             |
+    | :----------------------- | :---------------- |
+    | Nombre del vínculo                | **app-vnet-link** |
+    | Red virtual          | **app-vnet**      |
+    | Habilitación del registro automático | **Habilitado**       |
 
 1. Seleccione **Aceptar**.
 
@@ -72,14 +71,13 @@ DNS privado de Azure proporciona un servicio DNS confiable y seguro para adminis
 
 1. En la pestaña **Datos básicos** de Crear conjunto de registros, escriba la información como se muestra en la tabla siguiente:
 
-    | Propiedad | Valor    |
-    |:---------|:---------|
-    |Nombre|**backend**|
-    |Tipo|**A**
-          |
-    |TTL|**1**|
-    |Dirección IP|**10.1.1.4**|
-
+    | Propiedad   | Valor        |
+    | :--------- | :----------- |
+    | Nombre       | **backend**  |
+    | Tipo       | **A**
+                  |
+    | TTL        | **1**        |
+    | Dirección IP | **10.1.1.4** |
 
 1. Seleccione **Aceptar**.
 
