@@ -23,58 +23,61 @@ Se le ha encargado aplicar [principios de confianza cero](https://learn.microsof
 ## Instrucciones del ejercicio
 
 >**Nota**: Para completar este laboratorio, necesitará una [suscripción de Azure](https://azure.microsoft.com/free/) con el rol RBAC **Colaborador** asignado.
+
 > En este laboratorio, cuando se le pida que cree un recurso, para las propiedades que no se especifican, use el valor predeterminado.
 
 ### Creación de redes y subredes virtuales de tipo hub-and-spoke
 
 Comience creando las redes virtuales que se muestran en el diagrama anterior.
 
-1. Abra un explorador y navegue hasta <a href="https://portal.azure.com/#home">Azure Portal</a> e inicie sesión.
-1. Para crear una red virtual, en la barra de búsqueda de la parte superior del portal, escriba **Redes virtuales** y seleccione **Redes virtuales** en los resultados.
-1. En el panel del portal **Redes virtuales,** seleccione **+ Crear**.
-1. Rellene todas las pestañas del proceso de creación mediante los valores de la tabla siguiente:
+1. Inicie sesión en **Azure Portal** - `https://portal.azure.com`.
+   
+1. Busque y seleccione `Virtual Networks`.
+   
+1. Selecciona **+ Crear** y completa la configuración de la **app-vnet**. Esta red virtual requiere dos subredes, **front-end** y **back-end**. 
 
     | Propiedad             | Valor           |
     | :------------------- | :-------------- |
     | Grupo de recursos       | **RG1**         |
-    | Nombre                 | **app-vnet**    |
+    | Nombre de la red virtual | `app-vnet`    |
     | Region               | **Este de EE. UU.**     |
     | Espacio de direcciones IPv4   | **10.1.0.0/16** |
-    | Nombre de subred          | **Front-end**    |
+    | Nombre de subred          | `frontend`    |
     | Intervalo de direcciones de subred | **10.1.0.0/24** |
-    | Nombre de subred          | **backend**     |
+    | Nombre de subred          | `backend`     |
     | Intervalo de direcciones de subred | **10.1.1.0/24** |
 
-    **Nota**: Deje los demás valores de configuración en sus valores predeterminados. Seleccione **Siguiente** para avanzar a la pestaña siguiente y **Crear** para crear la red virtual.
-1. Siguiendo los mismos pasos anteriores, cree la red virtual de Azure **Hub-vnet** con los valores de la tabla siguiente:
+    **Nota**: Deje los demás valores de configuración en sus valores predeterminados. Cuando hayas finalizado, selecciona **"Revisar y crear"** y, a continuación, **Crear**.
+   
+1. Crea la configuración de red virtual **Hub-vnet**. Esta red virtual tiene la subred de firewall. 
 
     | Propiedad             | Valor                    |
     | :------------------- | :----------------------- |
     | Grupo de recursos       | **RG1**                  |
-    | Nombre                 | **Hub-vnet** |
+    | Nombre                 | `hub-vnet` |
     | Region               | **Este de EE. UU.**              |
     | Espacio de direcciones IPv4   | **10.0.0.0/16**          |
     | Nombre de subred          | **AzureFirewallSubnet**  |
     | Intervalo de direcciones de subred | **10.0.0.0/24**          |
 
-1. Una vez finalizada la implementación. Vuelva al portal y, en la barra de búsqueda, escriba **grupos de recursos** y seleccione **Grupos de recursos** en los resultados. Seleccione **RG1** en el panel principal y confirme que ambas redes virtuales se han implementado.
+1. Una vez completadas las implementaciones, busca y selecciona tu **grupo de recursos**. Confirma que las nuevas redes virtuales forman parte del grupo de recursos. 
 
-### Configuración de una relación del mismo nivel entre las redes virtuales
+### Configurar una relación del mismo nivel entre las redes virtuales
 
-1. Establecer una relación del mismo nivel entre las dos redes virtuales permitirá que el tráfico fluya en ambas direcciones entre las redes virtuales **app-vnet** y **hub-vnet**.
-1. En el portal, en la vista del grupo de recursos RG1. Seleccione la red virtual **app-vnet**.
-1. En el menú contextual **app-vnet** del lado izquierdo del portal, desplácese hacia abajo y seleccione **emparejamientos**.
-1. En el panel emparejamientos de **app-vnet**, seleccione **+ Agregar**.
-1. Rellene el formulario con los valores de la siguiente tabla:
+1. Busca y selecciona la máquina virtual `app-vnet`.
+   
+1. En la hoja **Configuración**, selecciona **Emparejamientos**.
+   
+1. **+ Agregar** un emparejamiento entre la dos redes virtuales. 
 
     | Propiedad                                 | Valor                          |
     | :--------------------------------------- | :----------------------------- |
-    | Esta red virtual Nombre del vínculo de emparejamiento   | **app-vnet-to-hub** |
-    | Red virtual remota Nombre del vínculo de emparejamiento | **hub-to-app-vnet** |
-    | Red virtual                          | **hub-vnet**       |
+    | Nombre del vínculo de emparejamiento              | `app-vnet-to-hub` |
+    | Red virtual    | `hub-vnet` |
+    | Nombre del vínculo de emparejamiento de red virtual local | `hub-to-app-vnet` |
 
     **Nota**: Deje los demás valores de configuración en sus valores predeterminados. Seleccione **Agregar** para crear el emparejamiento de grupo de red virtual.
 
     [Más información sobre el emparejamiento de red virtual](https://learn.microsoft.com/azure/virtual-network/virtual-network-manage-peering?tabs=peering-portal).
 
-1. Una vez completado el proceso, y después de que se actualice la configuración. Compruebe que el **estado del emparejamiento** está establecido **en Conectado.** (es posible que deba actualizar la página para habilitar la opción Estado de actualización)
+1. Una vez completada la implementación, comprueba que el **Estado de emparejamiento** es **Conectado**. 
