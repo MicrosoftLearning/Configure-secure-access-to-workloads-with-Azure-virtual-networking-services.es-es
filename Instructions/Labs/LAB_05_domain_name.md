@@ -1,84 +1,103 @@
 ---
 lab:
-  title: 'Ejercicio: Registro y resolución interna de nombres de dominio'
+  title: 'Ejercicio 05: Creación de zonas DNS y configuración de DNS'
   module: Guided Project - Configure secure access to workloads with Azure virtual networking services
 ---
 
-# Laboratorio: Registro y resolución interna de nombres de dominio
+# Ejercicio 05: Creación de zonas DNS y configuración de DNS
 
 ## Escenario
 
-La organización requiere que las cargas de trabajo registren y resuelvan los nombres de dominio internamente en redes virtuales. Las máquinas virtuales de las redes virtuales pueden usar el nombre de dominio en lugar de las direcciones IP para la comunicación interna. En ese caso, los nombres de dominio se resolverán con una zona DNS privada mediante un vínculo de red virtual.
+La organización necesita que las cargas de trabajo usen nombres de dominio en lugar de direcciones IP para las comunicaciones internas.  La organización no quiere agregar una solución DNS personalizada. Identificas estos requisitos.
++ Se requiere una **zona DNS privada** para contoso.com.
++ El DNS usará un **vínculo de red virtual** a app-vnet. 
++ Se requiere un nuevo **registro DNS** para la subred de back-end. 
 
-### Diagrama de la arquitectura
+## Tareas de aptitudes
+
++ Creación y configuración de una zona DNS privada.
++ Creación y configuración de registros DNS.
++ Configuración de DNS en una red virtual.
+  
+## Diagrama de la arquitectura
 
 ![Diagrama de Azure DNS vinculado a una red virtual.](../Media/task-5.png)
 
-### Tareas de aptitudes
 
-- Crear y configurar una zona DNS privada.
-- Cree y configure registros DNS.
-- Configure DNS en una red virtual.
 
 ## Instrucciones del ejercicio
 
-### Crear una zona DNS privada
+**Nota:** este ejercicio requiere que se instalen las redes y subredes virtuales del laboratorio 01. Si necesitas implementar esos recursos, se proporciona una [plantilla](https://github.com/MicrosoftLearning/Configure-secure-access-to-workloads-with-Azure-virtual-networking-services/blob/main/Allfiles/Labs/All-Labs/create-vnet-subnets-template.json).
 
-DNS privado de Azure proporciona un servicio DNS confiable y seguro para administrar y resolver los nombres de dominio en una red virtual sin necesidad de agregar una solución DNS personalizada. Al utilizar zonas DNS privadas, puede usar sus propios nombres de dominio personalizados en lugar de los nombres proporcionados por Azure que están disponibles actualmente.
+### Creación de una zona DNS privada
 
-1. En la barra de búsqueda del portal, escriba **Zonas dns privadas** en el cuadro de texto de búsqueda y seleccione Zonas DNS privadas en los resultados.
+El [DNS privado de Azure](https://learn.microsoft.com/azure/dns/private-dns-overview) proporciona un servicio DNS confiable y seguro para administrar y resolver los nombres de dominio en una red virtual sin necesidad de agregar una solución DNS personalizada. Al usar zonas DNS privadas, puedes usar nombres de dominio personalizados en lugar de los nombres proporcionados por Azure.
 
-1. Seleccione **+ Create** (+ Crear).
+1. En Azure Portal, busca y selecciona `Private dns zones`.
 
-1. En la pestaña **Datos básicos** de Crear zona DNS privada, escriba la información como se muestra en la tabla siguiente:
+1. Selecciona **+ Crear** y configure la zona DNS. 
 
     | Propiedad       | Valor                        |
     | :------------- | :--------------------------- |
-    | Suscripción   | **Seleccione la suscripción** |
+    | Suscripción   | **Selecciona la suscripción** |
     | Grupo de recursos | **RG1**                      |
-    | Nombre           | **contoso.com**              |
-    | Region         | **Este de EE. UU.**                  |
+    | Nombre           | `private.contoso.com`              |
+    | Región         | **Este de EE. UU.**                  |
 
-1. Seleccione **Revisar y crear** y luego **Crear**.
+1. Selecciona **Revisar y crear** y luego **Crear**.
 
-### Cree un vínculo de red virtual para su zona de DNS privada
+1. Espera a que se implemente la zona DNS y selecciona **Ir al recurso**. 
 
-1. En la barra de búsqueda del portal, escriba **Zonas dns privadas** en el cuadro de texto de búsqueda y seleccione Zonas DNS privadas en los resultados.
+### Creación de un vínculo de red virtual para tu zona DNS privada
 
-1. Seleccione **contoso.com**.
+Para resolver registros DNS en una zona DNS privada, los recursos deben estar vinculados a la zona privada. Un [vínculo de red virtual](https://learn.microsoft.com/azure/dns/private-dns-virtual-network-links) asocia la red virtual a la zona privada.
 
-1. Seleccione **+ Vínculo de la red virtual**.
+1. En el portal, sigue trabajando en la zona DNS de **private.contoso.com**. 
 
-1. Seleccione **+ Agregar**.
+1. En la hoja **Administración de DNS**, selecciona **+ Vínculos de red virtual**.
 
-1. En la pestaña **Datos básicos** de Crear red virtual, escriba la información como se muestra en la tabla siguiente:
+1. Selecciona **+ Agregar"** y configura el vínculo de red virtual. 
 
     | Propiedad                 | Valor             |
     | :----------------------- | :---------------- |
-    | Nombre del vínculo                | **app-vnet-link** |
+    | Nombre del vínculo                | `app-vnet-link` |
     | Red virtual          | **app-vnet**      |
     | Habilitación del registro automático | **Habilitado**       |
 
-1. Seleccione **Aceptar**.
+1. Selecciona **Crear** y espera a que se complete la implementación. Si es necesario, **actualiza** la página. 
 
 ### Creación de un conjunto de registros de DNS
 
-1. En la barra de búsqueda del portal, escriba **Zonas dns privadas** en el cuadro de texto de búsqueda y seleccione Zonas DNS privadas en los resultados.
+Los [registros DNS](https://learn.microsoft.com/en-us/azure/dns/dns-zones-records#dns-records) proporcionan información sobre la zona DNS. 
 
-1. Seleccione **contoso.com**.
+1. En el portal, sigue trabajando en la zona DNS de **private.contoso.com**. 
 
-1. Seleccione **+ Conjunto de registros**.
+1. En la hoja **Administración de DNS**, selecciona **+ Conjuntos de registros**.
 
-1. En la pestaña **Datos básicos** de Crear conjunto de registros, escriba la información como se muestra en la tabla siguiente:
+1. Observa que se han creado automáticamente dos registros A para cada una de las máquinas virtuales. 
 
+1. Selecciona **+ Agregar** y configura un conjunto de registros. Cuando termines, selecciona **Agregar**. 
+   
     | Propiedad   | Valor        |
     | :--------- | :----------- |
-    | Nombre       | **backend**  |
+    | Nombre       | `backend`    |
     | Tipo       | **A**
                   |
     | TTL        | **1**        |
-    | Dirección IP | **10.1.1.4** |
+    | Dirección IP | **10.1.1.5** |
 
-1. Seleccione **Aceptar**.
+**Nota:** este conjunto de registros implica que hay una máquina virtual en app-vnet con una dirección IP privada de 10.1.1.5.
 
-1. Compruebe que **contoso.com** tenga un conjunto de registros denominado **back-end**.
+### Aprende más con el curso en línea
+
++ [Introducción a Azure DNS](https://learn.microsoft.com/training/modules/intro-to-azure-dns/). En este módulo se explica Azure DNS, cómo funciona y cuándo debes elegir usar Azure DNS como solución para satisfacer las necesidades de tu organización.
++ [Hospeda el dominio en Azure DNS](https://learn.microsoft.com/training/modules/host-domain-azure-dns/). En este módulo, aprenderás cómo crear una zona y un registro DNS.
+
+### Puntos clave
+
+Enhorabuena por completar este ejercicio. Estos son los puntos clave:
+
++ Azure DNS es un servicio en la nube que permite hospedar y administrar dominios de sistema de nombres de dominio (DNS), también conocidos como zonas DNS. 
++ Los datos de las zonas de nombres de dominio de host de zona pública de Azure DNS para los registros que pretende que resuelva cualquier host de Internet.
++ Las zonas de DNS privado de Azure te permiten configurar un espacio de nombres de zona DNS privada para recursos privados de Azure.
++ Una zona DNS es una colección de registros DNS. Los registros DNS proporcionan información sobre el dominio.
