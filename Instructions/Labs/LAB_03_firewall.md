@@ -1,58 +1,60 @@
 ---
 lab:
-  title: 'Ejercicio: Protección de la aplicación web frente al tráfico malintencionado y bloqueo del acceso no autorizado'
+  title: 'Ejercicio 03: Creación y configuración de una instancia de Azure Firewall'
   module: Guided Project - Configure secure access to workloads with Azure virtual networking services
 ---
 
-# Laboratorio: Protección de la aplicación web frente al tráfico malintencionado y bloqueo del acceso no autorizado
+# Ejercicio 03: Creación y configuración de una instancia de Azure Firewall
 
 ## Escenario
 
-Su organización busca proteger la aplicación web frente al tráfico malintencionado y bloquear el acceso no autorizado.
-
-Además de los grupos de seguridad de red y los grupos de seguridad de aplicaciones, se puede configurar un firewall para agregar otra capa de seguridad a la aplicación web. El firewall protege la aplicación web del tráfico malintencionado y bloquea el acceso no autorizado con las directivas que configure.
-
-La directiva de Azure Firewall es un recurso general con configuración operativa y de seguridad para Azure Firewall. Permite definir una jerarquía de reglas y exigir el cumplimiento. En esta tarea configurará las reglas de aplicación y de red para el firewall mediante la directiva de Firewall. Puede usar la directiva de Azure Firewall para administrar conjuntos de reglas que Azure Firewall use para filtrar el tráfico.
-
-### Diagrama de la arquitectura
-
-![Diagrama en el que se muestra una red virtual con un firewall y una tabla de rutas.](../Media/task-3.png)
+La organización necesita una seguridad de red centralizada para la red virtual de la aplicación. A medida que aumenta el uso de la aplicación, se necesitarán filtros de nivel de aplicación más granulares y protección contra amenazas avanzada. Además, se espera que la aplicación necesite actualizaciones continuas de canalizaciones de Azure DevOps. Identificas estos requisitos.
++ Se necesita Azure Firewall para mayor seguridad en app-vnet. 
++ Se debe configurar una **directiva de firewall** para ayudar a administrar el acceso a la aplicación. 
++ Se requiere una **regla de aplicación** de directiva de firewall. Esta regla permitirá que la aplicación acceda a Azure DevOps para que se pueda actualizar el código de la aplicación. 
++ Se requiere una **regla de red** de directiva de firewall. Esta regla permitirá la resolución DNS. 
 
 ### Tareas de aptitudes
 
-- Cree una instancia de Azure Firewall.
-- Cree y configure una directiva de firewall.
-- Cree una colección de reglas de aplicación.
-- Cree una colección de reglas de red.
++ Creación de una instancia de Azure Firewall.
++ Creación y configuración de una directiva de firewall.
++ Creación de una colección de reglas de aplicación.
++ Creación de una colección de reglas de red.
+
+## Diagrama de arquitectura
+
+![Diagrama en el que se muestra una red virtual con un firewall y una tabla de rutas.](../Media/task-3.png)
+
+
   
 ## Instrucciones del ejercicio
 
 ### Creación de una subred de Azure Firewall en nuestra red virtual existente
 
-1. En el cuadro de búsqueda de la parte superior del portal, escriba **Redes virtuales**. En los resultados de la búsqueda, seleccione **Redes virtuales**.
+1. En el cuadro de búsqueda de la parte superior del portal, escribe **Redes virtuales**. En los resultados de la búsqueda, selecciona **Redes virtuales**.
 
-1. Seleccione **app-vnet**.
+1. Selecciona **app-vnet**.
 
-1. Seleccione **Subredes**.
+1. Selecciona **Subredes**.
 
-1. Seleccione **+Subred**.
+1. Selecciona **+Subred**.
 
-1. Escriba la información siguiente y seleccione **Guardar**.
+1. Escribe la información siguiente y selecciona **Guardar**.
 
     | Propiedad      | Valor                   |
     | :------------ | :---------------------- |
     | Nombre          | **AzureFirewallSubnet** |
     | Intervalo de direcciones | **10.1.63.0/24**        |
 
-    > **Nota**: Deje los demás valores de configuración en sus valores predeterminados.
+**Nota**: deja los demás valores de configuración en sus valores predeterminados.
 
 ### Creación de una instancia de Azure Firewall
 
-1. En el cuadro de búsqueda que aparece en la parte superior del portal, escriba **Firewall**. Seleccione **Firewall** en los resultados de la búsqueda.
+1. En el cuadro de búsqueda que aparece en la parte superior del portal, escribe **Firewall**. Selecciona **Firewall** en los resultados de la búsqueda.
 
-1. Seleccione **+ Create** (+ Crear).
+1. Selecciona **+ Crear**.
 
-1. Cree un firewall con los valores de la tabla siguiente. Para cualquier propiedad que no se especifique, use el valor predeterminado.
+1. Crea un firewall con los valores de la tabla siguiente. Para cualquier propiedad que no se especifique, usa el valor predeterminado.
     >**Nota:** Azure Firewall puede tardar unos minutos en implementarse.
 
     | Propiedad                 | Valor                                             |
@@ -60,8 +62,8 @@ La directiva de Azure Firewall es un recurso general con configuración operativ
     | Grupo de recursos           | **RG1**                                           |
     | Nombre                     | **app-vnet-firewall**                             |
     | SKU del firewall             | **Estándar**                                      |
-    | Administración del firewall      | **Usar una directiva de firewall para administrar este firewall** |
-    | Directiva de firewall          | Seleccione **Agregar nuevo**.                                |
+    | Administración del firewall      | **Uso de una directiva de firewall para administrar este firewall** |
+    | Directiva de firewall          | Selecciona **Agregar nuevo**.                                |
     | Nombre de la directiva              | **fw-policy**                                     |
     | Region                   | **Este de EE. UU.**                                       |
     | Nivel de directiva              | **Estándar**                                      |
@@ -69,85 +71,77 @@ La directiva de Azure Firewall es un recurso general con configuración operativ
     | Red virtual          | **app-vnet** (RG1)                                |
     | Dirección IP pública        | Agregar nuevo: **fwpip**                                |
 
-    [Obtenga más información sobre cómo crear un firewall](https://docs.microsoft.com/azure/firewall/tutorial-firewall-deploy-portal).
+    [Obtén más información sobre cómo crear un firewall](https://docs.microsoft.com/azure/firewall/tutorial-firewall-deploy-portal).
 
-1. Seleccione **Revisar y crear** y luego **Crear**.
+1. Selecciona **Revisar y crear** y luego **Crear**.
 
 ### Actualización de la directiva de firewall
 
-1. En el cuadro de búsqueda que aparece en la parte superior del portal, escriba **Firewall**. Seleccione **Directivas de firewall** en los resultados de la búsqueda.
+1. En el portal, busca y selecciona `Firewall Policies`. 
 
-1. Seleccione **fw-policy**.
+1. Selecciona **fw-policy**.
 
-1. Seleccione **Application rules** (Reglas de aplicación).
+### Adición de una regla de aplicación
 
-1. Seleccione **+ Colección de reglas de aplicación**.
+1. En la hoja **Configuración**, selecciona **Reglas de aplicación** y, luego, **Agregar una colección de reglas**.
 
-1. Use los valores de la tabla siguiente: Para cualquier propiedad que no se especifique, use el valor predeterminado.
+1. Configura la colección de reglas de aplicación y selecciona **Agregar**. 
 
     | Propiedad               | Valor                                     |
     | :--------------------- | :---------------------------------------- |
-    | Nombre                   | **app-vnet-fw-rule-collection**           |
+    | Nombre                   | `app-vnet-fw-rule-collection`         |
     | Tipo de colección de reglas   | **Aplicación**                           |
-    | Prioridad               | **200**                                   |
+    | Priority               | `200`                                   |
     | Acción de colección de reglas | **Permitir**                                 |
     | Grupo de colección de reglas  | **DefaultApplicationRuleCollectionGroup** |
+    | Nombre             | `AllowAzurePipelines`                |
+    | Tipo de origen      | **Dirección IP**                         |
+    | Origen           | `10.1.0.0/23`                       |
+    | Protocolo         | `https`                             |
+    | Tipo de destino | **FQDN**                                  |
+    | Destino      | `dev.azure.com, azure.microsoft.com` |
 
-    1. En **reglas**, use los valores de la tabla siguiente:
+**Nota**: la regla **AllowAzurePipelines** permite que la aplicación web acceda a Azure Pipelines. La regla permite que la aplicación web acceda al servicio Azure DevOps y al sitio web de Azure.
 
-        | Propiedad         | Valor                                  |
-        | :--------------- | :------------------------------------- |
-        | Nombre             | **AllowAzurePipelines**                |
-        | Tipo de origen      | **Dirección IP**                         |
-        | Source           | **10.1.0.0/23**                        |
-        | Protocolo         | **https**                              |
-        | Tipo de destino | FQDN                                   |
-        | Destino      | **dev.azure.com, azure.microsoft.com** |
+### Adición de una regla de red
 
-        y seleccione **Agregar**
+1. En la hoja **Configuración**, selecciona **Reglas de red** y, después, **Agregar una colección de red**.
 
-> **Nota**: La regla **AllowAzurePipelines** permite que la aplicación web acceda a Azure Pipelines. La regla permite que la aplicación web acceda al servicio Azure DevOps y al sitio web de Azure.
-
-1. Cree una **colección de reglas de red** que contenga una sola regla para las direcciones IP con los valores de la tabla siguiente. Para cualquier propiedad que no se especifique, use el valor predeterminado.
-
-1. Seleccione **Reglas de red**.
-
-1. Seleccione **+ Colección de reglas de red**.
-
-1. Use los valores de la tabla siguiente: Para cualquier propiedad que no se especifique, use el valor predeterminado.
+1. Configura la regla de red y selecciona **Agregar**.  
 
     | Propiedad               | Valor                                 |
     | :--------------------- | :------------------------------------ |
-    | Nombre                   | **app-vnet-fw-nrc-dns**               |
+    | Nombre                   | `app-vnet-fw-nrc-dns`               |
     | Tipo de colección de reglas   | **Network**                           |
-    | Prioridad               | **200**                               |
+    | Prioridad               | `200`                        |
     | Acción de colección de reglas | **Permitir**                             |
     | Grupo de colección de reglas  | **DefaultNetworkRuleCollectionGroup** |
+    | Regla                  | **AllowDns**         |
+    | Origen                | `10.1.0.0/23`      |
+    | Protocolo              | **UDP**              |
+    | Puertos de destino     | `53`               |
+    | Direcciones de destino | **1.1.1.1, 1.0.0.1** |
 
-    1. En **reglas**, use los valores de la tabla siguiente:
+### Comprobación del estado de la directiva de firewall y del firewall
 
-        | Propiedad              | Valor                |
-        | :-------------------- | :------------------- |
-        | Regla                  | **AllowDns**         |
-        | Source                | **10.1.0.0/23**      |
-        | Protocolo              | **UDP**              |
-        | Puertos de destino     | **53**               |
-        | Direcciones de destino | **1.1.1.1, 1.0.0.1** |
+1. En el portal de búsqueda, busca y selecciona **Firewall**. 
 
-        Y seleccione **Agregar**.
+1. Mira **app-vnet-firewall** y asegúrate de que el **estado de aprovisionamiento** es **Correcto**. Esta operación puede tardar unos minutos. 
 
-    Más información sobre la [creación de una regla de aplicación](https://docs.microsoft.com/azure/firewall/tutorial-firewall-deploy-portal#configure-an-application-rule) y la [creación de una regla de red](https://docs.microsoft.com/azure/firewall/tutorial-firewall-deploy-portal#configure-a-network-rule).
+1. En el portal busca y selecciona **Directivas de firewall**.
 
-1. Para comprobar que el estado de aprovisionamiento de Azure Firewall y directiva de firewall se muestra **Correcto**.
+1. Mira **fw-policy** y asegúrate de que el **estado de aprovisionamiento** es **Correcto**. Esta operación puede tardar unos minutos.
 
-1. En el cuadro de búsqueda que aparece en la parte superior del portal, escriba **Firewall**. Seleccione **Firewall** en los resultados de la búsqueda.
+### Aprende más con el curso en línea
 
-1. Seleccione **app-vnet-firewall**.
++ [Introducción a Azure Firewall](https://learn.microsoft.com/training/modules/introduction-azure-firewall/). En este módulo, conocerás las características, las reglas, las opciones de implementación y la administración de Azure Firewall.
++ [Introducción a Azure Firewall Manager](https://learn.microsoft.com/training/modules/intro-to-azure-firewall-manager/). En este módulo, aprenderás cómo Azure Firewall Manager proporciona una directiva de seguridad central y una administración de rutas para perímetros de seguridad basados en la nube
 
-1- Compruebe que el **estado de aprovisionamiento** es **Correcto**.
+### Puntos clave
 
-1- En el cuadro de búsqueda que aparece en la parte superior del portal, escriba **Directivas de firewall**. Seleccione **Directivas de firewall** en los resultados de la búsqueda.
+Enhorabuena por completar este ejercicio. Estos son los puntos clave:
 
-1. Seleccione **fw-policy**.
-
-1- Compruebe que el **estado de aprovisionamiento** es **Correcto**.
++ Azure Firewall es un servicio de seguridad basado en la nube que protege los recursos de red virtual de Azure de amenazas entrantes y salientes.
++ Una directiva de firewall es un recurso de Azure que contiene una o más colecciones de reglas de NAT, red y aplicación.
++ Las reglas de red permiten o deniegan el tráfico en función de las direcciones IP, los puertos y los protocolos.
++ Las reglas de aplicación permiten o deniegan el tráfico en función de nombres de dominio completos (FQDN), direcciones URL y protocolos HTTP/HTTPS.
