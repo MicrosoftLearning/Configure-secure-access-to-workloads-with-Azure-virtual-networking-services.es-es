@@ -88,7 +88,7 @@ Los [grupos de seguridad de red (NSG)](https://learn.microsoft.com/azure/virtual
 
     | Propiedad       | Valor                        |
     | :------------- | :--------------------------- |
-    | Suscripción   | **Seleccione la suscripción** |
+    | Suscripción   | **Selecciona la suscripción** |
     | Grupo de recursos | **RG1**                      |
     | Nombre           | `app-vnet-nsg`            |
     | Región         | **Este de EE. UU.**                  |

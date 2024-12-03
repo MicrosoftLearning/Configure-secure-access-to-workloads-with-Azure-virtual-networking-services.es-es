@@ -8,9 +8,9 @@ lab:
 
 ## Escenario
 
-La organización está migrando una aplicación basada en web a Azure. Tu primera tarea consiste en colocar las redes y subredes virtuales. También debes emparejar de forma segura las redes virtuales. Identificas estos requisitos. 
+La organización está migrando una aplicación basada en web a Azure. Tu primera tarea consiste en colocar las redes virtuales y subredes. También debes emparejar de forma segura las redes virtuales. Identificas estos requisitos. 
 + Se requieren dos redes virtuales, **app-vnet** y **hub-vnet**. Esto simula una arquitectura de red radial. 
-+ app-vnet hospedará la aplicación. Esta red virtual requiere de dos subredes. La **subred de front-end** hospedará los servidores web. La **subred back-end** hospedará los servidores de base de datos.
++ app-vnet hospedará la aplicación. Esta red virtual requiere dos subredes. La **subred de front-end** hospedará los servidores web. La **subred back-end** hospedará los servidores de base de datos.
 + hub-vnet solo requiere una subred para el firewall. 
 + Las dos redes virtuales deben ser capaces de comunicarse entre sí de forma segura y privada a través de un **emparejamiento de red virtual**. 
 + Ambas redes virtuales deben estar en la misma región. 

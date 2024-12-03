@@ -11,7 +11,7 @@ lab:
 La organización necesita una seguridad de red centralizada para la red virtual de la aplicación. A medida que aumenta el uso de la aplicación, se necesitarán filtros de nivel de aplicación más granulares y protección contra amenazas avanzada. Además, se espera que la aplicación necesite actualizaciones continuas de canalizaciones de Azure DevOps. Identificas estos requisitos.
 + Se necesita Azure Firewall para mayor seguridad en app-vnet. 
 + Se debe configurar una **directiva de firewall** para ayudar a administrar el acceso a la aplicación. 
-+ Se requiere una **regla de aplicación** de directiva de firewall. Esta regla permitirá que la aplicación acceda a Azure DevOps para que se pueda actualizar el código de la aplicación. 
++ Se requiere una **regla de aplicación** de directiva de firewall. Esta regla permitirá que la aplicación acceda a Azure DevOps para que se pueda actualizar el código de aplicación. 
 + Se requiere una **regla de red** de directiva de firewall. Esta regla permitirá la resolución DNS. 
 
 ### Tareas de aptitudes

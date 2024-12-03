@@ -9,7 +9,7 @@ lab:
 ## Escenario
 
 Para asegurarte de que se aplican las directivas de firewall, el tráfico de aplicación saliente debe enrutarse a través del firewall. Identificas estos requisitos. 
-+ Se requiere una tabla de rutas. Esta tabla de rutas se asociará a las subredes de front-end y back-end.  
++ Se requiere una tabla de rutas. Esta tabla de rutas se asociará a las subredes front-end y back-end.  
 + Se requiere una ruta para filtrar todo el tráfico IP saliente de las subredes al firewall. Se usará la dirección IP privada del firewall. 
 
 ## Tareas de aptitudes
