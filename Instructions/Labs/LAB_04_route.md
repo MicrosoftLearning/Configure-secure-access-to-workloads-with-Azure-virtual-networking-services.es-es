@@ -71,7 +71,7 @@ Azure crea automáticamente una [tabla de rutas](https://learn.microsoft.com/azu
     | Propiedad        | Valor              |
     | :-------------- | :----------------- |
     | Red virtual | **app-vnet** (RG1) |
-    | Subred          | **Front-end**       |
+    | Subred          | **backend**       |
 
 ### Creación de una ruta en la tabla de rutas
 
