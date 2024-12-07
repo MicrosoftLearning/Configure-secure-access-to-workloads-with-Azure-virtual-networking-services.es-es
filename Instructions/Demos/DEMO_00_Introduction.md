@@ -9,11 +9,11 @@ Use esta demostración para mostrar a los alumnos cómo acceder al entorno de la
 
 ### Muestre a los alumnos el entorno de laboratorio (ajustar para el host de laboratorio)
 
-- Analice cómo los alumnos acceden al entorno de laboratorio. 
+- Hable de cómo pueden acceder los alumnos al entorno de laboratorio. 
 
-- Explique cómo iniciar sesión en el host de máquina virtual.
+- Explique cómo iniciar sesión en el host de la máquina virtual.
 
-- Explique cómo acceder a [Azure Portal](https://portal.azure.com). Se prefiere abrir Azure Portal en el entorno de laboratorio en lugar de en una ventana independiente. Pregunte cuántos alumnos han usado ya el portal. 
+- Explique cómo acceder a [Azure Portal](https://portal.azure.com). Abra Azure Portal en el entorno de laboratorio en lugar de en una ventana independiente. Pregunte cuántos alumnos han usado ya el portal. 
 
 - Explique qué recursos ya se han configurado para los laboratorios.
 
@@ -23,7 +23,7 @@ Use esta demostración para mostrar a los alumnos cómo acceder al entorno de la
 
 ### Muestre a los alumnos sus materiales de curso.
 
-- Acceda a la [página Microsoft Learn](https://learn.microsoft.com).
+- Acceda a la página [Microsoft Learn](https://learn.microsoft.com).
 
 - Analice que Microsoft Learn es una excelente fuente para toda la documentación, cursos de aprendizaje, certificaciones y evaluaciones de Azure. 
 
@@ -33,8 +33,8 @@ Use esta demostración para mostrar a los alumnos cómo acceder al entorno de la
 
 - Explique que el contenido es un material de referencia y no tiene por qué representar en su totalidad las presentaciones de la clase.
 
-- Analice que cada uno de estos módulos puede tener actividades prácticas adicionales. Identificará estas actividades a medida que avanza el curso. 
+- Hable de que cada uno de estos módulos puede tener actividades prácticas adicionales. Identificará estas actividades a medida que avance el curso. 
 
-- Pida a los alumnos que busquen y marquen la ruta de aprendizaje.
+- Pida a los alumnos que busquen y guarden como marcador la ruta de aprendizaje.
 
  

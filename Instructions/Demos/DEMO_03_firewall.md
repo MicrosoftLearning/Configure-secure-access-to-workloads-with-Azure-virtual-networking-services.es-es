@@ -11,7 +11,7 @@ En esta demostración, se explorará Azure Firewall.
 Revise y cree una directiva de Azure Firewall y Firewall.
 1.  [Diapositiva auxiliar] Antes de comenzar la demostración, vamos a revisar lo que es Azure Firewall.
 2.  Acceda a Azure Portal.
-3.  Cree una instancia de Azure Firewall.
+3.  Creación de una instancia de Azure Firewall.
 4.  ⓘ En la pestaña Datos básicos se explican las opciones de configuración disponibles a medida que se rellenan. 
 5.  Acepte los restantes valores predeterminados y, después, seleccione Revisar y crear.
 6.  Una vez completada la implementación, vaya al recurso de firewall y revise la página de información general. 
@@ -52,7 +52,9 @@ Se trata de la regla de red que permite el acceso saliente a dos direcciones IP 
 10. En Protocolo, seleccione UDP.
 11. En Puertos de destino, escriba 53.
 12. En Tipo de destino, seleccione Dirección IP.
-13. En Destino, escriba 209.244.0.3, 209.244.0.4.
+
+>**Nota**: Los alumnos ahora deberían poder completar LAB_04
+14. En Destino, escriba 209.244.0.3, 209.244.0.4.
 Estos son servidores DNS públicos ofrecidos por CenturyLink.
-14. Seleccione Agregar.
+15. Seleccione Agregar.
 

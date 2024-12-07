@@ -39,28 +39,11 @@ Una tabla de rutas se puede asociar a varias subredes o a ninguna. Las tablas de
 
 1.  Vaya a la subred que quiera asociar a la tabla de rutas.
 
-1.  Seleccione **Tabla de enrutamiento* y elija la nueva tabla de enrutamiento. 
+1.  Seleccione  **Tabla de rutas** y elija la nueva tabla de rutas. 
 
 1.  **Guarde** los cambios.
 
  
 >**Nota**: Solo puede asociar una tabla de rutas a las subredes de las redes virtuales que existen en la misma suscripción y ubicación de Azure de la tabla de rutas.
-
-### Probar el firewall
-Ahora, pruebe el firewall para confirmar que las directivas de enrutamiento y firewall funcionan según lo previsto. 
-
-1.  Conecte un escritorio remoto a la dirección IP pública del firewall e inicie sesión en la máquina virtual Srv-Work.
-2.  Abra Internet Explorer y vaya a https://www.google.com.
-3.  Seleccione Aceptar > Cerrar en las alertas de seguridad de Internet Explorer. Debería ver la página principal de Google.
-4.  Vaya a https://www.microsoft.com. El firewall debería bloquearle.
-
-Con ello, ha comprobado que las reglas de firewall funcionan:
-- Puede navegar al FQDN permitido pero no a ningún otro.
-- Puede resolver nombres DNS con el servidor DNS externo configurado.
- 
->**Nota**: Los alumnos ahora deberían poder completar LAB_03
-
-
-
 
 >**Nota**: Los alumnos ahora deberían poder completar LAB_04

@@ -41,7 +41,9 @@ La organización necesita que el control del tráfico en app-vnet se controle es
 
 1. El almacenamiento no es necesario para esta tarea Selecciona la suscripción. 
 
-1. Implementa las máquinas virtuales necesarias para este ejercicio. 
+1. Implementa las máquinas virtuales necesarias para este ejercicio.
+
+>**Nota**: si se produce un error en la implementación para la restricción de capacidad, edita la plantilla y cambia el valor de "ubicación". 
 
    ```powershell
    $RGName = "RG1"
@@ -63,7 +65,7 @@ La organización necesita que el control del tráfico en app-vnet se controle es
     | :------------- | :--------------------------- |
     | Suscripción   | **Selecciona la suscripción** |
     | Grupo de recursos | **RG1**                      |
-    | Nombre           | `app-backend-asg`          |
+    | Nombre           | `app-frontend-asg`          |
     | Región         | **Este de EE. UU.**                  |
 
 1. Selecciona **Revisar y crear** y luego **Crear**.
@@ -76,7 +78,7 @@ La organización necesita que el control del tráfico en app-vnet se controle es
 
 1. En la hoja **Redes**, selecciona la **Grupos de seguridad de aplicaciones** y, después, selecciona **Agregar grupos de seguridad de aplicaciones**.
 
-1. Selecciona **app-backend-asg** y, después, selecciona **Agregar**.
+1. Selecciona **app-frontend-asg** y, después, selecciona **Agregar**.
    
 ### Creación de la subred y asociación con el grupo de seguridad de red
 
@@ -88,7 +90,7 @@ Los [grupos de seguridad de red (NSG)](https://learn.microsoft.com/azure/virtual
 
     | Propiedad       | Valor                        |
     | :------------- | :--------------------------- |
-    | Suscripción   | **Seleccione la suscripción** |
+    | Suscripción   | **Selecciona la suscripción** |
     | Grupo de recursos | **RG1**                      |
     | Nombre           | `app-vnet-nsg`            |
     | Región         | **Este de EE. UU.**                  |
