@@ -23,7 +23,7 @@ La organización está migrando una aplicación basada en web a Azure. Tu primer
 
 ## Diagrama de arquitectura
 
-![Diagrama que muestra dos redes virtuales que están emparejadas.](../Media/task-1.png)
+![Diagrama que muestra dos redres virtuales que están emparejadas.](../Media/task-1.png)
 
 ## Instrucciones del ejercicio
 
