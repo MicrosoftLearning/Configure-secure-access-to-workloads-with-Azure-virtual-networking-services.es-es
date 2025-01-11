@@ -1,64 +1,64 @@
 ---
 demo:
-  title: 'Demostración: Creación y configuración del emparejamiento de redes virtuales'
-  module: Guided Project - Configure secure access to workloads with Azure virtual networking services
+    title: 'Demonstration: Create and Configure Virtual Networks and peering'
+    module: 'Guided Project - Configure secure access to workloads with Azure virtual networking services'
 ---
-## Demostración: Creación y configuración del emparejamiento de redes virtuales
+## Demonstration – Create and Configure Virtual Networks and peering
 
 
-En esta demostración, creará redes virtuales.
+In this demonstration, you will create virtual networks.
 
-**Nota:**  Puede usar los valores sugeridos para la configuración, o bien valores personalizados propios si lo prefiere.
+**Note:** You can use the suggested values for the settings, or your own custom values if you prefer.
 
-**Nota:** Hay disponible una **[simulación de laboratorio interactiva de redes virtuales](https://mslearn.cloudguides.com/en-us/guides/AZ-900%20Exam%20Guide%20-%20Azure%20Fundamentals%20Exercise%204?azure-portal=true)** y **[emparejamiento de redes](https://mslabs.cloudguides.com/guides/AZ-104%20Exam%20Guide%20-%20Microsoft%20Azure%20Administrator%20Exercise%209?azure-portal=true)** que le permiten recorrer un laboratorio similar si no puede realizar una demostración en vivo. Es posible que encuentre pequeñas diferencias entre la simulación interactiva y la demostración sugerida, pero las ideas y los conceptos básicos que se muestran son los mismos. 
+**Note:** An **[interactive lab simulation for virtual networks](https://mslearn.cloudguides.com/en-us/guides/AZ-900%20Exam%20Guide%20-%20Azure%20Fundamentals%20Exercise%204?azure-portal=true)** and **[Virtual network peering](https://mslabs.cloudguides.com/guides/AZ-104%20Exam%20Guide%20-%20Microsoft%20Azure%20Administrator%20Exercise%209?azure-portal=true)** is available that allows you to click through a similar lab if you are unable to do a live demonstration. You may find slight differences between the interactive simulation and the suggested demo, but the core concepts and ideas being demonstrated are the same. 
 
 
-[Inicio rápido: Creación de una red virtual mediante Azure Portal](https://docs.microsoft.com/azure/virtual-network/quick-create-portal)
+[Quickstart: Create a virtual network - Azure portal](https://docs.microsoft.com/azure/virtual-network/quick-create-portal)
 
-### Creación de una red virtual en el portal
+### Create a virtual network in the portal
 
 
    
-1.  [Diapositiva auxiliar] Antes de comenzar la demostración, vamos a revisar qué son las redes virtuales y los conceptos clave de las redes virtuales de Azure. Use esta diapositiva para resaltar las funcionalidades de Azure Virtual Networks. Además, también puede destacar los conceptos y las prácticas recomendadas de Azure Virtual Network. A medida que muestra la creación de una red virtual, puede explicar los conceptos básicos del espacio de direcciones, las subredes, las regiones y las suscripciones. También puede discutir estas diapositivas al final y pasar directamente a la demostración.
+1.  [Supporting Slide] Before beginning the demonstration, let's review what virtual networks are and key concepts for Azure Virtual Networks. Use this slide to highlight the capabilities of Azure Virtual Networks. As well as Azure Virtual Network concepts and best practices. As you demonstrate creating a virtual network you can explain the basic concepts of address space, subnets, regions, and subscriptions. You could also discuss these slides at the end and get straight into the demonstration.
    
-2.  Inicie sesión en Azure Portal y busque  **Redes virtuales**.
+2.  Sign in the to the Azure portal and search for **Virtual Networks**.
    
-3.  Cree una red virtual y explique la configuración básica a medida que avance. Asegúrese de que se crea al menos una subred. 
+3.  Create a virtual network, explaining the basic settings as you go. Ensure at least one subnet is created. 
    
-4.  Explique que Azure Portal proporciona una interfaz fácil de usar. Los elementos marcados con un asterisco rojo son obligatorios.
+4.  Explain the Azure portal provides an easy-to-use interface. Items marked with a red asterisk are required.
    
-5.  [Diapositiva auxiliar] Seleccione la pestaña Seguridad. Use esta diapositiva para resaltar brevemente los servicios de seguridad, estos temas se tratarán con más detalle más adelante en el curso. Más información: Servicios que pueden implementarse en una red virtual. 
+5.  [Supporting Slide] Select the Security tab. Use this slide to highlight the security services briefly, these topics will be covered in more detail later in the course. Learn more, Services that can be deployed into a virtual network. 
    
-6.  [Diapositiva auxiliar] Seleccione la pestaña Direcciones IP. Use esta diapositiva para revisar: Planificar redes virtuales y subredes. Agregue o modifique una subred para demostrar a los alumnos cómo configurar subredes. 
-7.  Asegúrese de que no haya errores de validación y, después, haga clic en Crear.
-8.  Haga clic en Crear y espere a que la red virtual se implemente. Señale los mensajes de notificación. 
-9.  Muestre cómo ir al recurso.
-10. Repita el proceso de creación de otra red virtual para que pueda demostrar el emparejamiento de VNet.
+6.  [Supporting Slide] Select the IP Addresses tab. Use this slide to review: Plan virtual networks and subnets. Add or modify a subnet to demonstrate to students how to configure subnets. 
+7.  Click Review and ensure there are no validation errors.
+8.  Click Create and wait for the virtual network to be deployed. Point out the notification messages. 
+9.  Show how to go to the resource.
+10. Repeat the process of creating another virtual network so you can demonstrate VNet Peering.
 
-## Configuración del emparejamiento de red virtual
+## Configure VNet Peering
 
-**Nota:**  Para esta demostración necesitará dos redes virtuales.
+**Note:** For this demonstration you will need two virtual networks.
 
-[Tutorial sobre conexión de redes virtuales con emparejamiento de VNet](https://docs.microsoft.com/azure/virtual-network/tutorial-connect-virtual-networks-portal)
+[Connect virtual networks with VNet peering - tutorial](https://docs.microsoft.com/azure/virtual-network/tutorial-connect-virtual-networks-portal)
 
-**Configuración del emparejamiento de VNet en la primera red virtual**
+**Configure VNet peering on the first virtual network**
 
-1. En  **Azure Portal**, seleccione la primera red virtual. Revise el valor del emparejamiento. 
+1. In the **Azure portal**, select the first virtual network. Review the value of peering. 
 
-1. En  **Configuración**, seleccione  **Emparejamientos** y **+ Agregar** un nuevo emparejamiento.
+1. Under **Settings**, select **Peerings** and **+ Add** a new peering.
 
-1. Configure el emparejamiento de la segunda red virtual. Use los iconos de información para revisar la configuración diferente. 
+1. Configure the peering the second virtual network. Use the information icons to review the different settings. 
 
-1. Una vez completado el emparejamiento, revise el **Estado de emparejamiento**. 
+1. When the peering is complete, review the **Peering status**. 
 
-**Confirmación del emparejamiento de VNet en la segunda red virtual**
+**Confirm VNet peering on the second virtual network**
 
-1. En  **Azure Portal**, seleccione la segunda red virtual.
+1. In the **Azure portal**, select the second virtual network
 
-1. En  **Configuración**, seleccione  **Emparejamientos**.
+1. Under **Settings**, select **Peerings**.
 
-1. Observe que se ha creado un emparejamiento de forma automática. Observe que el  **Estado de emparejamiento** es  **Conectado**.
+1. Notice that a peering has automatically been created. Notice that the **Peering Status** is **Connected**.
 
 
->**Nota**: Los alumnos ahora deberían poder completar LAB_01
+>**Note**: Students should now be able to complete LAB_01
 
