@@ -10,9 +10,7 @@ lab:
 
 La organización necesita que el control del tráfico en app-vnet se controle estrechamente. Identificas estos requisitos.
 + La subred de front-end tiene servidores web a los que se puede acceder desde Internet. Se requiere un **grupo de seguridad de aplicaciones** (ASG) para esos servidores. El ASG debe estar asociado a cualquier interfaz de máquina virtual que forme parte del grupo. Esto permitirá que los servidores web se administren fácilmente. 
-+ Se requiere una **regla de NSG** para permitir el tráfico HTTPS entrante al ASG. Esta regla usa el protocolo TCP en el puerto 443. 
 + La subred back-end tiene servidores de base de datos usados por los servidores web front-end. Se requiere un **grupo de seguridad de red** (NSG) para controlar este tráfico. El grupo de seguridad de red debe estar asociado a cualquier interfaz de máquina virtual a la que accedan los servidores web. 
-+ Se requiere una **regla de NSG** para permitir el tráfico de red entrante desde el ASG a los servidores back-end.  Esta regla usa el servicio MS SQL y el puerto 1443. 
 + Para las pruebas, se debe instalar una máquina virtual en la subred de front-end (VM1) y en la subred de back-end (VM2).  El grupo de TI ha proporcionado una plantilla de Azure Resource Manager para implementar estos **servidores Ubuntu**. 
 
 ## Tareas de aptitudes
@@ -39,9 +37,9 @@ La organización necesita que el control del tráfico en app-vnet se controle es
 
 1. Si se te pide que selecciones **Bash** o **PowerShell**, selecciona **PowerShell**.
 
-1. El almacenamiento no es necesario para esta tarea Selecciona la suscripción. 
+1. El almacenamiento no es necesario para esta tarea Selecciona la suscripción. **Aplique** los cambios. 
 
-1. Implementa las máquinas virtuales necesarias para este ejercicio.
+1. Utiliza estos comandos para implementar las máquinas virtuales necesarias para este ejercicio.
 
 >**Nota**: si se produce un error en la implementación para la restricción de capacidad, edita la plantilla y cambia el valor de "ubicación". 
 
@@ -74,7 +72,7 @@ La organización necesita que el control del tráfico en app-vnet se controle es
 
 **Asociación del grupo de seguridad de aplicaciones a la interfaz de red de la máquina virtual**
 
-1. En Azure Portal, busca y selecciona `VM2`.
+1. En Azure Portal, busca y selecciona `VM1`.
 
 1. En la hoja **Redes**, selecciona la **Grupos de seguridad de aplicaciones** y, después, selecciona **Agregar grupos de seguridad de aplicaciones**.
 
@@ -126,7 +124,7 @@ Un grupo de seguridad de red usa las [reglas de seguridad](https://learn.microso
     | Origen                                 | **Cualquiera**                        |
     | Intervalos de puertos de origen                     | **\***                         |
     | Destino                            | **Grupo de seguridad de aplicaciones** |
-    | Grupo de seguridad de aplicación de destino | **app-backend-asg**            |
+    | Grupo de seguridad de aplicación de destino | **app-frontend-asg**            |
     | Servicio                                | **SSH**                        |
     | Acción                                 | **Permitir**                      |
     | Prioridad                               | **100**                        |
