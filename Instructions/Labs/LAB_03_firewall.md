@@ -70,6 +70,7 @@ La organización necesita una seguridad de red centralizada para la red virtual 
     | Elegir una red virtual | **Utilizar existente**                                  |
     | Red virtual          | **app-vnet** (RG1)                                |
     | Dirección IP pública        | Agregar nuevo: **fwpip**                                |
+    | Active el NIC de administración de Firewall | **desactive la casilla**                         |
 
     [Obtén más información sobre cómo crear un firewall](https://docs.microsoft.com/azure/firewall/tutorial-firewall-deploy-portal).
 
@@ -91,7 +92,7 @@ La organización necesita una seguridad de red centralizada para la red virtual 
     | :--------------------- | :---------------------------------------- |
     | Nombre                   | `app-vnet-fw-rule-collection`         |
     | Tipo de colección de reglas   | **Aplicación**                           |
-    | Priority               | `200`                                   |
+    | Prioridad               | `200`                                   |
     | Acción de colección de reglas | **Permitir**                                 |
     | Grupo de colección de reglas  | **DefaultApplicationRuleCollectionGroup** |
     | Nombre             | `AllowAzurePipelines`                |
